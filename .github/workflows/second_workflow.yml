@@ -1,0 +1,16 @@
+name: Second Workflow
+on:
+  workflow_run:
+    workflows: ["First Workflow"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    needs: First Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Second Workflow
+        run : echo "This is Second Workflow"
